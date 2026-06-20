@@ -113,7 +113,7 @@ export function OnboardingDialog({ open, onDone }: { open: boolean; onDone: () =
 
   return (
     <Dialog open={open} onOpenChange={() => {}}>
-      <DialogContent className="max-w-lg" hideCloseButton>
+      <DialogContent className="max-w-lg" onPointerDownOutside={(e) => e.preventDefault()} onEscapeKeyDown={(e) => e.preventDefault()}>
         <DialogHeader>
           <DialogTitle>Welcome to OpportunityHub 🎉</DialogTitle>
           <DialogDescription>
