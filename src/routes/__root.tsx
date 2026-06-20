@@ -89,8 +89,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "OpportunityHub — Every opportunity, every student" },
       { name: "twitter:description", content: "India's all-in-one student opportunity platform: scholarships, government schemes, loans, internships, competitions, courses and career roadmaps." },
-      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/0vtsvpkh28dwcatxUAZELJNXeBf1/social-images/social-1781946707715-image1desk.webp" },
-      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/0vtsvpkh28dwcatxUAZELJNXeBf1/social-images/social-1781946707715-image1desk.webp" },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/0vtsvpkh28dwcatxUAZELJNXeBf1/social-images/social-1781946955696-image1desk.webp" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/0vtsvpkh28dwcatxUAZELJNXeBf1/social-images/social-1781946955696-image1desk.webp" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
