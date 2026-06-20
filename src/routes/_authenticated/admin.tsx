@@ -70,7 +70,7 @@ function ContentManager() {
     if (!name) return;
     const insert: Record<string, unknown> = { [titleCol]: name };
     if (table === "blogs" || table === "careers") insert.slug = name.toLowerCase().replace(/\s+/g, "-").slice(0, 60);
-    const { error } = await supabase.from(table).insert(insert);
+    const { error } = await (supabase.from(table) as unknown as { insert: (r: unknown) => Promise<{ error: { message: string } | null }> }).insert(insert);
     if (error) return toast.error(error.message);
     setName("");
     toast.success("Added");

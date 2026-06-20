@@ -13,14 +13,23 @@ import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedSuggestionsRouteImport } from './routes/_authenticated/suggestions'
+import { Route as AuthenticatedSearchRouteImport } from './routes/_authenticated/search'
 import { Route as AuthenticatedScholarshipsRouteImport } from './routes/_authenticated/scholarships'
 import { Route as AuthenticatedSchemesRouteImport } from './routes/_authenticated/schemes'
+import { Route as AuthenticatedSavedRouteImport } from './routes/_authenticated/saved'
+import { Route as AuthenticatedProfileRouteImport } from './routes/_authenticated/profile'
+import { Route as AuthenticatedNotificationsRouteImport } from './routes/_authenticated/notifications'
 import { Route as AuthenticatedLoansRouteImport } from './routes/_authenticated/loans'
 import { Route as AuthenticatedInternshipsRouteImport } from './routes/_authenticated/internships'
+import { Route as AuthenticatedDocumentsRouteImport } from './routes/_authenticated/documents'
+import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as AuthenticatedCoursesRouteImport } from './routes/_authenticated/courses'
 import { Route as AuthenticatedCompetitionsRouteImport } from './routes/_authenticated/competitions'
 import { Route as AuthenticatedCareersRouteImport } from './routes/_authenticated/careers'
 import { Route as AuthenticatedBlogRouteImport } from './routes/_authenticated/blog'
+import { Route as AuthenticatedApplicationsRouteImport } from './routes/_authenticated/applications'
+import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as AuthenticatedCareersSlugRouteImport } from './routes/_authenticated/careers/$slug'
 import { Route as AuthenticatedBlogSlugRouteImport } from './routes/_authenticated/blog/$slug'
 
@@ -43,6 +52,17 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedSuggestionsRoute =
+  AuthenticatedSuggestionsRouteImport.update({
+    id: '/suggestions',
+    path: '/suggestions',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedSearchRoute = AuthenticatedSearchRouteImport.update({
+  id: '/search',
+  path: '/search',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedScholarshipsRoute =
   AuthenticatedScholarshipsRouteImport.update({
     id: '/scholarships',
@@ -54,6 +74,22 @@ const AuthenticatedSchemesRoute = AuthenticatedSchemesRouteImport.update({
   path: '/schemes',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedSavedRoute = AuthenticatedSavedRouteImport.update({
+  id: '/saved',
+  path: '/saved',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedProfileRoute = AuthenticatedProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedNotificationsRoute =
+  AuthenticatedNotificationsRouteImport.update({
+    id: '/notifications',
+    path: '/notifications',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedLoansRoute = AuthenticatedLoansRouteImport.update({
   id: '/loans',
   path: '/loans',
@@ -65,6 +101,16 @@ const AuthenticatedInternshipsRoute =
     path: '/internships',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedDocumentsRoute = AuthenticatedDocumentsRouteImport.update({
+  id: '/documents',
+  path: '/documents',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedCoursesRoute = AuthenticatedCoursesRouteImport.update({
   id: '/courses',
   path: '/courses',
@@ -86,6 +132,17 @@ const AuthenticatedBlogRoute = AuthenticatedBlogRouteImport.update({
   path: '/blog',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedApplicationsRoute =
+  AuthenticatedApplicationsRouteImport.update({
+    id: '/applications',
+    path: '/applications',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedCareersSlugRoute =
   AuthenticatedCareersSlugRouteImport.update({
     id: '/$slug',
@@ -102,14 +159,23 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/admin': typeof AuthenticatedAdminRoute
+  '/applications': typeof AuthenticatedApplicationsRoute
   '/blog': typeof AuthenticatedBlogRouteWithChildren
   '/careers': typeof AuthenticatedCareersRouteWithChildren
   '/competitions': typeof AuthenticatedCompetitionsRoute
   '/courses': typeof AuthenticatedCoursesRoute
+  '/dashboard': typeof AuthenticatedDashboardRoute
+  '/documents': typeof AuthenticatedDocumentsRoute
   '/internships': typeof AuthenticatedInternshipsRoute
   '/loans': typeof AuthenticatedLoansRoute
+  '/notifications': typeof AuthenticatedNotificationsRoute
+  '/profile': typeof AuthenticatedProfileRoute
+  '/saved': typeof AuthenticatedSavedRoute
   '/schemes': typeof AuthenticatedSchemesRoute
   '/scholarships': typeof AuthenticatedScholarshipsRoute
+  '/search': typeof AuthenticatedSearchRoute
+  '/suggestions': typeof AuthenticatedSuggestionsRoute
   '/blog/$slug': typeof AuthenticatedBlogSlugRoute
   '/careers/$slug': typeof AuthenticatedCareersSlugRoute
 }
@@ -117,14 +183,23 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/admin': typeof AuthenticatedAdminRoute
+  '/applications': typeof AuthenticatedApplicationsRoute
   '/blog': typeof AuthenticatedBlogRouteWithChildren
   '/careers': typeof AuthenticatedCareersRouteWithChildren
   '/competitions': typeof AuthenticatedCompetitionsRoute
   '/courses': typeof AuthenticatedCoursesRoute
+  '/dashboard': typeof AuthenticatedDashboardRoute
+  '/documents': typeof AuthenticatedDocumentsRoute
   '/internships': typeof AuthenticatedInternshipsRoute
   '/loans': typeof AuthenticatedLoansRoute
+  '/notifications': typeof AuthenticatedNotificationsRoute
+  '/profile': typeof AuthenticatedProfileRoute
+  '/saved': typeof AuthenticatedSavedRoute
   '/schemes': typeof AuthenticatedSchemesRoute
   '/scholarships': typeof AuthenticatedScholarshipsRoute
+  '/search': typeof AuthenticatedSearchRoute
+  '/suggestions': typeof AuthenticatedSuggestionsRoute
   '/blog/$slug': typeof AuthenticatedBlogSlugRoute
   '/careers/$slug': typeof AuthenticatedCareersSlugRoute
 }
@@ -134,14 +209,23 @@ export interface FileRoutesById {
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/auth': typeof AuthRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/_authenticated/admin': typeof AuthenticatedAdminRoute
+  '/_authenticated/applications': typeof AuthenticatedApplicationsRoute
   '/_authenticated/blog': typeof AuthenticatedBlogRouteWithChildren
   '/_authenticated/careers': typeof AuthenticatedCareersRouteWithChildren
   '/_authenticated/competitions': typeof AuthenticatedCompetitionsRoute
   '/_authenticated/courses': typeof AuthenticatedCoursesRoute
+  '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
+  '/_authenticated/documents': typeof AuthenticatedDocumentsRoute
   '/_authenticated/internships': typeof AuthenticatedInternshipsRoute
   '/_authenticated/loans': typeof AuthenticatedLoansRoute
+  '/_authenticated/notifications': typeof AuthenticatedNotificationsRoute
+  '/_authenticated/profile': typeof AuthenticatedProfileRoute
+  '/_authenticated/saved': typeof AuthenticatedSavedRoute
   '/_authenticated/schemes': typeof AuthenticatedSchemesRoute
   '/_authenticated/scholarships': typeof AuthenticatedScholarshipsRoute
+  '/_authenticated/search': typeof AuthenticatedSearchRoute
+  '/_authenticated/suggestions': typeof AuthenticatedSuggestionsRoute
   '/_authenticated/blog/$slug': typeof AuthenticatedBlogSlugRoute
   '/_authenticated/careers/$slug': typeof AuthenticatedCareersSlugRoute
 }
@@ -151,14 +235,23 @@ export interface FileRouteTypes {
     | '/'
     | '/auth'
     | '/reset-password'
+    | '/admin'
+    | '/applications'
     | '/blog'
     | '/careers'
     | '/competitions'
     | '/courses'
+    | '/dashboard'
+    | '/documents'
     | '/internships'
     | '/loans'
+    | '/notifications'
+    | '/profile'
+    | '/saved'
     | '/schemes'
     | '/scholarships'
+    | '/search'
+    | '/suggestions'
     | '/blog/$slug'
     | '/careers/$slug'
   fileRoutesByTo: FileRoutesByTo
@@ -166,14 +259,23 @@ export interface FileRouteTypes {
     | '/'
     | '/auth'
     | '/reset-password'
+    | '/admin'
+    | '/applications'
     | '/blog'
     | '/careers'
     | '/competitions'
     | '/courses'
+    | '/dashboard'
+    | '/documents'
     | '/internships'
     | '/loans'
+    | '/notifications'
+    | '/profile'
+    | '/saved'
     | '/schemes'
     | '/scholarships'
+    | '/search'
+    | '/suggestions'
     | '/blog/$slug'
     | '/careers/$slug'
   id:
@@ -182,14 +284,23 @@ export interface FileRouteTypes {
     | '/_authenticated'
     | '/auth'
     | '/reset-password'
+    | '/_authenticated/admin'
+    | '/_authenticated/applications'
     | '/_authenticated/blog'
     | '/_authenticated/careers'
     | '/_authenticated/competitions'
     | '/_authenticated/courses'
+    | '/_authenticated/dashboard'
+    | '/_authenticated/documents'
     | '/_authenticated/internships'
     | '/_authenticated/loans'
+    | '/_authenticated/notifications'
+    | '/_authenticated/profile'
+    | '/_authenticated/saved'
     | '/_authenticated/schemes'
     | '/_authenticated/scholarships'
+    | '/_authenticated/search'
+    | '/_authenticated/suggestions'
     | '/_authenticated/blog/$slug'
     | '/_authenticated/careers/$slug'
   fileRoutesById: FileRoutesById
@@ -231,6 +342,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/suggestions': {
+      id: '/_authenticated/suggestions'
+      path: '/suggestions'
+      fullPath: '/suggestions'
+      preLoaderRoute: typeof AuthenticatedSuggestionsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/search': {
+      id: '/_authenticated/search'
+      path: '/search'
+      fullPath: '/search'
+      preLoaderRoute: typeof AuthenticatedSearchRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/scholarships': {
       id: '/_authenticated/scholarships'
       path: '/scholarships'
@@ -245,6 +370,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedSchemesRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/saved': {
+      id: '/_authenticated/saved'
+      path: '/saved'
+      fullPath: '/saved'
+      preLoaderRoute: typeof AuthenticatedSavedRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/profile': {
+      id: '/_authenticated/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof AuthenticatedProfileRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/notifications': {
+      id: '/_authenticated/notifications'
+      path: '/notifications'
+      fullPath: '/notifications'
+      preLoaderRoute: typeof AuthenticatedNotificationsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/loans': {
       id: '/_authenticated/loans'
       path: '/loans'
@@ -257,6 +403,20 @@ declare module '@tanstack/react-router' {
       path: '/internships'
       fullPath: '/internships'
       preLoaderRoute: typeof AuthenticatedInternshipsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/documents': {
+      id: '/_authenticated/documents'
+      path: '/documents'
+      fullPath: '/documents'
+      preLoaderRoute: typeof AuthenticatedDocumentsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/dashboard': {
+      id: '/_authenticated/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof AuthenticatedDashboardRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/courses': {
@@ -285,6 +445,20 @@ declare module '@tanstack/react-router' {
       path: '/blog'
       fullPath: '/blog'
       preLoaderRoute: typeof AuthenticatedBlogRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/applications': {
+      id: '/_authenticated/applications'
+      path: '/applications'
+      fullPath: '/applications'
+      preLoaderRoute: typeof AuthenticatedApplicationsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/admin': {
+      id: '/_authenticated/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AuthenticatedAdminRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/careers/$slug': {
@@ -327,25 +501,43 @@ const AuthenticatedCareersRouteWithChildren =
   AuthenticatedCareersRoute._addFileChildren(AuthenticatedCareersRouteChildren)
 
 interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAdminRoute: typeof AuthenticatedAdminRoute
+  AuthenticatedApplicationsRoute: typeof AuthenticatedApplicationsRoute
   AuthenticatedBlogRoute: typeof AuthenticatedBlogRouteWithChildren
   AuthenticatedCareersRoute: typeof AuthenticatedCareersRouteWithChildren
   AuthenticatedCompetitionsRoute: typeof AuthenticatedCompetitionsRoute
   AuthenticatedCoursesRoute: typeof AuthenticatedCoursesRoute
+  AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
+  AuthenticatedDocumentsRoute: typeof AuthenticatedDocumentsRoute
   AuthenticatedInternshipsRoute: typeof AuthenticatedInternshipsRoute
   AuthenticatedLoansRoute: typeof AuthenticatedLoansRoute
+  AuthenticatedNotificationsRoute: typeof AuthenticatedNotificationsRoute
+  AuthenticatedProfileRoute: typeof AuthenticatedProfileRoute
+  AuthenticatedSavedRoute: typeof AuthenticatedSavedRoute
   AuthenticatedSchemesRoute: typeof AuthenticatedSchemesRoute
   AuthenticatedScholarshipsRoute: typeof AuthenticatedScholarshipsRoute
+  AuthenticatedSearchRoute: typeof AuthenticatedSearchRoute
+  AuthenticatedSuggestionsRoute: typeof AuthenticatedSuggestionsRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAdminRoute: AuthenticatedAdminRoute,
+  AuthenticatedApplicationsRoute: AuthenticatedApplicationsRoute,
   AuthenticatedBlogRoute: AuthenticatedBlogRouteWithChildren,
   AuthenticatedCareersRoute: AuthenticatedCareersRouteWithChildren,
   AuthenticatedCompetitionsRoute: AuthenticatedCompetitionsRoute,
   AuthenticatedCoursesRoute: AuthenticatedCoursesRoute,
+  AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
+  AuthenticatedDocumentsRoute: AuthenticatedDocumentsRoute,
   AuthenticatedInternshipsRoute: AuthenticatedInternshipsRoute,
   AuthenticatedLoansRoute: AuthenticatedLoansRoute,
+  AuthenticatedNotificationsRoute: AuthenticatedNotificationsRoute,
+  AuthenticatedProfileRoute: AuthenticatedProfileRoute,
+  AuthenticatedSavedRoute: AuthenticatedSavedRoute,
   AuthenticatedSchemesRoute: AuthenticatedSchemesRoute,
   AuthenticatedScholarshipsRoute: AuthenticatedScholarshipsRoute,
+  AuthenticatedSearchRoute: AuthenticatedSearchRoute,
+  AuthenticatedSuggestionsRoute: AuthenticatedSuggestionsRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
