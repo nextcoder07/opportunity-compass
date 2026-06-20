@@ -68,7 +68,7 @@ function Page() {
                   {data[t.type].map((r) => (
                     <Card key={r.id as string}><CardContent className="p-4">
                       <h3 className="line-clamp-2 text-sm font-semibold">{String(r[t.title] ?? "Untitled")}</h3>
-                      {(r.url || r.apply_url || r.official_url) && (
+                      {Boolean(r.url || r.apply_url || r.official_url) && (
                         <a href={(r.url || r.apply_url || r.official_url) as string} target="_blank" rel="noreferrer" className="mt-3 inline-flex items-center gap-1 text-xs text-primary">Open <ExternalLink className="h-3 w-3" /></a>
                       )}
                     </CardContent></Card>
