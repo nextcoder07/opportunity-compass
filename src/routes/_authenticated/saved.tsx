@@ -67,7 +67,7 @@ function Page() {
                 <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
                   {data[t.type].map((r) => (
                     <Card key={r.id as string}><CardContent className="p-4">
-                      <h3 className="line-clamp-2 text-sm font-semibold">{(r[t.title] as string) || "Untitled"}</h3>
+                      <h3 className="line-clamp-2 text-sm font-semibold">{String(r[t.title] ?? "Untitled")}</h3>
                       {(r.url || r.apply_url || r.official_url) && (
                         <a href={(r.url || r.apply_url || r.official_url) as string} target="_blank" rel="noreferrer" className="mt-3 inline-flex items-center gap-1 text-xs text-primary">Open <ExternalLink className="h-3 w-3" /></a>
                       )}
