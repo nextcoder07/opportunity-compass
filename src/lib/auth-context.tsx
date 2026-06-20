@@ -1,0 +1,89 @@
+import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
+import type { Session, User } from "@supabase/supabase-js";
+import { supabase } from "@/integrations/supabase/client";
+
+type Profile = {
+  id: string;
+  full_name: string | null;
+  avatar_url: string | null;
+  education_level: string | null;
+  degree: string | null;
+  stream: string | null;
+  branch: string | null;
+  year_or_semester: string | null;
+  state: string | null;
+  district: string | null;
+  gender: string | null;
+  category: string | null;
+  income_range: string | null;
+  career_interests: string[] | null;
+  onboarded: boolean;
+};
+
+type Ctx = {
+  user: User | null;
+  session: Session | null;
+  profile: Profile | null;
+  isAdmin: boolean;
+  loading: boolean;
+  refreshProfile: () => Promise<void>;
+  signOut: () => Promise<void>;
+};
+
+const AuthCtx = createContext<Ctx | undefined>(undefined);
+
+export function AuthProvider({ children }: { children: ReactNode }) {
+  const [session, setSession] = useState<Session | null>(null);
+  const [user, setUser] = useState<User | null>(null);
+  const [profile, setProfile] = useState<Profile | null>(null);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  const loadProfile = async (uid: string) => {
+    const [{ data: p }, { data: roles }] = await Promise.all([
+      supabase.from("profiles").select("*").eq("id", uid).maybeSingle(),
+      supabase.from("user_roles").select("role").eq("user_id", uid),
+    ]);
+    setProfile(p as Profile | null);
+    setIsAdmin(!!roles?.some((r) => r.role === "admin"));
+  };
+
+  useEffect(() => {
+    const { data: sub } = supabase.auth.onAuthStateChange((_evt, sess) => {
+      setSession(sess);
+      setUser(sess?.user ?? null);
+      if (sess?.user) {
+        setTimeout(() => loadProfile(sess.user.id), 0);
+      } else {
+        setProfile(null);
+        setIsAdmin(false);
+      }
+    });
+    supabase.auth.getSession().then(async ({ data: { session } }) => {
+      setSession(session);
+      setUser(session?.user ?? null);
+      if (session?.user) await loadProfile(session.user.id);
+      setLoading(false);
+    });
+    return () => sub.subscription.unsubscribe();
+  }, []);
+
+  const refreshProfile = async () => {
+    if (user) await loadProfile(user.id);
+  };
+  const signOut = async () => {
+    await supabase.auth.signOut();
+  };
+
+  return (
+    <AuthCtx.Provider value={{ user, session, profile, isAdmin, loading, refreshProfile, signOut }}>
+      {children}
+    </AuthCtx.Provider>
+  );
+}
+
+export const useAuth = () => {
+  const ctx = useContext(AuthCtx);
+  if (!ctx) throw new Error("useAuth must be used inside AuthProvider");
+  return ctx;
+};
