@@ -62,7 +62,7 @@ export function DirectoryPage<T extends Record<string, unknown>>({ config }: { c
         console.error(error);
         setRows([]);
       } else {
-        setRows((data as T[]) || []);
+        setRows(((data as unknown) as T[]) || []);
       }
     })();
     return () => { cancel = true; };
