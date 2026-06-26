@@ -29,7 +29,7 @@ export function SiteHeader() {
           <span className="grid h-9 w-9 place-items-center rounded-lg bg-primary text-primary-foreground">
             <Sparkles className="h-5 w-5" />
           </span>
-          OpportunityHub
+          OpportunityAnuj
         </Link>
 
         <nav className="hidden items-center gap-1 md:flex">
