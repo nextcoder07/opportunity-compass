@@ -14,9 +14,12 @@ dist-ssr
 .tanstack/**
 .nitro
 *.local
+.env 
 
 # env files (can opt-in for committing if needed)
 .env*
+.env 
+
 
 # Wrangler / Cloudflare
 .wrangler/
